@@ -18,9 +18,8 @@ const librarian = (function () {
         }
     }
     
-    const removeBookFromLibrary = (book) =>
-        {const index = myLibrary.findIndex(book)
-        myLibrary.splice(index, 1)
+    const removeBookFromLibrary = (index) =>
+        {myLibrary.splice(index, 1)
         librarian.updateBookshelf()
     }
 
@@ -36,12 +35,33 @@ const librarian = (function () {
         })
         table.innerHTML+=tr;
     }
-        
 
-    return { addBooktoLibrary, removeBookFromLibrary, updateBookshelf }
+    const setUpAddBookButton = () => 
+        {
+        const checkbox = document.getElementById("add-book-btn");
+
+        checkbox.addEventListener("click", addbookClick, false);
+
+        function addbookClick(event) {
+            event.preventDefault();
+
+            const title = document.getElementById("title").value
+            const author = document.getElementById("author").value
+            const pages = document.getElementById("pages").value
+            const readStatus = document.getElementById("readStatus").value
+
+            librarian.addBooktoLibrary(title , author, pages, readStatus)
+        }
+    }    
+
+    return { addBooktoLibrary, removeBookFromLibrary, updateBookshelf, setUpAddBookButton }
 })();
+
+librarian.setUpAddBookButton()
 
 librarian.addBooktoLibrary("a", "b", "c", "d")
 librarian.addBooktoLibrary("e", "f", "g", "h")
+librarian.addBooktoLibrary("i", "j", "k", "l")
+librarian.addBooktoLibrary("m", "n", "o", "p")
 
 console.log(myLibrary)
