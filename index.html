@@ -23,6 +23,8 @@
         </tbody>
     </table>
 
+    <button id="show-form-button" onclick="librarian.showForm(`visible`)">Add Book</button>
+
     <form id="add-book-form">
         <label for="title">Title:</label><br>
         <input type="text" id="title" name="title"><br>
@@ -33,6 +35,7 @@
         <label for="readStatus">Last name:</label><br>
         <input type="text" id="readStatus" name="readStatus"><br><br>
         <input type="submit" value="Submit" id="add-book-btn">
+        <input type="submit" value="Cancel" id="hide-form-btn">
     </form>
 </body>
 </html>

@@ -36,11 +36,9 @@ const librarian = (function () {
         table.innerHTML+=tr;
     }
 
-    const setUpAddBookButton = () => 
+    const setUpAddButtons = () => 
         {
-        const checkbox = document.getElementById("add-book-btn");
-
-        checkbox.addEventListener("click", addbookClick, false);
+        document.getElementById("add-book-btn").addEventListener("click", addbookClick, false);
 
         function addbookClick(event) {
             event.preventDefault();
@@ -50,14 +48,30 @@ const librarian = (function () {
             const pages = document.getElementById("pages").value
             const readStatus = document.getElementById("readStatus").value
 
-            librarian.addBooktoLibrary(title , author, pages, readStatus)
+            if (title == "" || author == "" || pages == "" || readStatus == "") {
+                alert("Some of your book's information is missing. Please try again.");
+            } else {
+                librarian.addBooktoLibrary(title , author, pages, readStatus)
+                librarian.showForm("hidden")
+            }
+        }
+
+        document.getElementById("hide-form-btn").addEventListener("click", hidebookClick, false);
+
+        function hidebookClick(event) {
+            event.preventDefault();
+
+            librarian.showForm("hidden")
         }
     }    
 
-    return { addBooktoLibrary, removeBookFromLibrary, updateBookshelf, setUpAddBookButton }
+    const showForm = (visibility) =>
+        document.getElementById("add-book-form").style.visibility = visibility
+
+    return { addBooktoLibrary, removeBookFromLibrary, updateBookshelf, setUpAddButtons, showForm }
 })();
 
-librarian.setUpAddBookButton()
+librarian.setUpAddButtons()
 
 librarian.addBooktoLibrary("a", "b", "c", "d")
 librarian.addBooktoLibrary("e", "f", "g", "h")

@@ -7,3 +7,7 @@ body {
 table, th, td {
     border: 1px solid black;
 }
+
+#add-book-form {
+    visibility: hidden;
+}
