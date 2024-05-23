@@ -28,17 +28,21 @@ const librarian = (function () {
         const table = document.getElementById("bookshelf")
         table.innerHTML="";
         var tr="";
+        var index = 0;
         myLibrary.forEach(book=>{
             tr+='<tr>';
-            tr+='<td>'+book.title+'</td>'+'<td>'+book.author+'</td>'+'<td>'+book.pages+'</td>'+'<td>'+book.readStatus+'</td>'
+            tr+='<td>'+book.title+'</td>'+'<td>'+book.author+'</td>'+
+            '<td>'+book.pages+'</td>'+'<td>'+book.readStatus+'</td>'+
+            '<td>'+`<button id=${index} onclick="librarian.removeBookFromLibrary(this.id)">Remove Book</button>`+'</td>'
             tr+='</tr>'
+            index += 1
         })
         table.innerHTML+=tr;
     }
 
     const setUpAddButtons = () => 
         {
-        document.getElementById("add-book-btn").addEventListener("click", addbookClick, false);
+        document.getElementById("add-book-btn").addEventListener("click", addbookClick);
 
         function addbookClick(event) {
             event.preventDefault();
