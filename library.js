@@ -1,4 +1,4 @@
-const myLibrary = []
+const myLibrary = [] // Consider turning this into a private array inside library
 
 function createBook (title, author, pages, readStatus) {
     const info = title + " by " + author + ", " + pages + " pages, " + readStatus;
@@ -7,18 +7,41 @@ function createBook (title, author, pages, readStatus) {
 }
 
 const librarian = (function () {
-    const addBooktoLibrary = (book) =>
+    // const myLibrary = []
+
+    const addBooktoLibrary = (title, author, pages, readStatus) =>
+        {const book = createBook (title, author, pages, readStatus)
         myLibrary.push(book)
+        librarian.updateBookshelf()
+        if (! book) {
+            
+        }
+    }
     
     const removeBookFromLibrary = (book) =>
-        // myLibrary.findIndex(book)
-        myLibrary.splice(myLibrary.findIndex(book), 1)
+        {const index = myLibrary.findIndex(book)
+        myLibrary.splice(index, 1)
+        librarian.updateBookshelf()
+    }
 
-    // const updateLibrary = () =>
-        // var table = "test"
+    const updateBookshelf = () =>
+        {
+        const table = document.getElementById("bookshelf")
+        table.innerHTML="";
+        var tr="";
+        myLibrary.forEach(book=>{
+            tr+='<tr>';
+            tr+='<td>'+book.title+'</td>'+'<td>'+book.author+'</td>'+'<td>'+book.pages+'</td>'+'<td>'+book.readStatus+'</td>'
+            tr+='</tr>'
+        })
+        table.innerHTML+=tr;
+    }
         
 
-    return { addBooktoLibrary, removeBookFromLibrary }
+    return { addBooktoLibrary, removeBookFromLibrary, updateBookshelf }
 })();
 
-const book = createBook (title, author, pages, readStatus)
+librarian.addBooktoLibrary("a", "b", "c", "d")
+librarian.addBooktoLibrary("e", "f", "g", "h")
+
+console.log(myLibrary)

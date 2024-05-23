@@ -1,0 +1,9 @@
+body {
+    /* background-image: url("images/anna-hunko-ajE5goOGzZc-unsplash.jpg");
+    background-size: 100% auto; */
+    background: rgb(132, 117, 20);
+}
+
+table, th, td {
+    border: 1px solid black;
+}
