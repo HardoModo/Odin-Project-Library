@@ -1,11 +1,20 @@
 body {
-    /* background-image: url("images/anna-hunko-ajE5goOGzZc-unsplash.jpg");
-    background-size: 100% auto; */
-    background: rgb(132, 117, 20);
+    background-image: url("images/anna-hunko-ajE5goOGzZc-unsplash.jpg");
+    background-size: 100% auto;
 }
 
 table, th, td {
     border: 1px solid black;
+}
+
+form, table {
+    background: #fefae0;
+    color: #bc6c25;
+}
+
+button, input[type="submit"] {
+    /* background: #fefae0; */
+    color: #bc6c25;
 }
 
 #add-book-form {

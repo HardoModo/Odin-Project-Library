@@ -32,7 +32,8 @@ const librarian = (function () {
         myLibrary.forEach(book=>{
             tr+='<tr>';
             tr+='<td>'+book.title+'</td>'+'<td>'+book.author+'</td>'+
-            '<td>'+book.pages+'</td>'+'<td>'+book.readStatus+'</td>'+
+            '<td>'+book.pages+'</td>'+
+            '<td>'+`<button id=readStatusOfBook${index} onclick="librarian.changeReadStatus(this.id)">`+book.readStatus+`</button>`+'</td>'+
             '<td>'+`<button id=${index} onclick="librarian.removeBookFromLibrary(this.id)">Remove Book</button>`+'</td>'
             tr+='</tr>'
             index += 1
@@ -72,14 +73,27 @@ const librarian = (function () {
     const showForm = (visibility) =>
         document.getElementById("add-book-form").style.visibility = visibility
 
-    return { addBooktoLibrary, removeBookFromLibrary, updateBookshelf, setUpAddButtons, showForm }
+    const changeReadStatus = (bookIndex) =>
+        {const elem = document.getElementById(bookIndex)
+
+            {if (elem.innerText == "Read") {
+                elem.innerText = "Not Read"
+            } else if (elem.innerText == "Not Read") {
+                elem.innerText = "Read"
+            } else {
+                elem.innerText = "Not Read"
+            }
+            } 
+        }
+
+    return { addBooktoLibrary, removeBookFromLibrary, updateBookshelf, setUpAddButtons, showForm, changeReadStatus }
 })();
 
 librarian.setUpAddButtons()
 
-librarian.addBooktoLibrary("a", "b", "c", "d")
-librarian.addBooktoLibrary("e", "f", "g", "h")
-librarian.addBooktoLibrary("i", "j", "k", "l")
-librarian.addBooktoLibrary("m", "n", "o", "p")
+librarian.addBooktoLibrary("a", "b", "c", "A")
+librarian.addBooktoLibrary("e", "f", "g", "Read")
+librarian.addBooktoLibrary("i", "j", "k", "Read")
+librarian.addBooktoLibrary("m", "n", "o", "Read")
 
 console.log(myLibrary)
