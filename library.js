@@ -31,8 +31,8 @@ const librarian = (function () {
         var index = 0;
         myLibrary.forEach(book=>{
             tr+='<tr>';
-            tr+='<td>'+book.title+'</td>'+'<td>'+book.author+'</td>'+
-            '<td>'+book.pages+'</td>'+
+            tr+='<td> '+book.title+' </td>'+'<td> '+book.author+' </td>'+
+            '<td> '+book.pages+' pages </td>'+
             '<td>'+`<button id=readStatusOfBook${index} onclick="librarian.changeReadStatus(this.id)">`+book.readStatus+`</button>`+'</td>'+
             '<td>'+`<button id=${index} onclick="librarian.removeBookFromLibrary(this.id)">Remove Book</button>`+'</td>'
             tr+='</tr>'
@@ -91,9 +91,9 @@ const librarian = (function () {
 
 librarian.setUpAddButtons()
 
-librarian.addBooktoLibrary("a", "b", "c", "A")
-librarian.addBooktoLibrary("e", "f", "g", "Read")
-librarian.addBooktoLibrary("i", "j", "k", "Read")
-librarian.addBooktoLibrary("m", "n", "o", "Read")
+librarian.addBooktoLibrary("The Alchemist", "Paulo Coelho", "208", "Read")
+librarian.addBooktoLibrary("The Little Prince", "Antoine de Saint-Exupéry", "96", "Read")
+librarian.addBooktoLibrary("The Metamorphosis", "Franz Kafka", "70", "Read")
+librarian.addBooktoLibrary("Oh, the Places You'll Go!", "Dr. Seuss", "56", "Read")
 
 console.log(myLibrary)
